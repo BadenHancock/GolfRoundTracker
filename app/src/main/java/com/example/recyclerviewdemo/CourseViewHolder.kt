@@ -1,11 +1,12 @@
 package com.example.recyclerviewdemo
 import android.widget.Toast
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recyclerviewdemo.databinding.ListItemLayoutCourseBinding
 
 class CourseViewHolder(val binding: ListItemLayoutCourseBinding) :
     RecyclerView.ViewHolder(binding.root) {
-
     private lateinit var currentCourse: Course
 
     init {

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.recyclerviewdemo.databinding.FragmentCourseSelectorBinding
 
 class CourseSelectorFragment : Fragment() {
@@ -36,7 +37,7 @@ class CourseSelectorFragment : Fragment() {
         )
 
 
-        val courses = listOf(
+        val courses = mutableListOf(
             Course("Country Club of Scranton (Falls)", ccsFalls, 9, 36),
             Course("Country Club of Scranton (Pines)", ccsPines, 9, 35),
             Course("Wyoming Valley Country Club", WyomingValley, 18, 71)
@@ -45,6 +46,19 @@ class CourseSelectorFragment : Fragment() {
         binding.button2.setOnClickListener() {
             val action = CourseSelectorFragmentDirections.actionCourseSelectorFragmentToCourseCreatorFragment()
             rootView.findNavController().navigate(action)
+        }
+
+        val navController = findNavController()
+
+        // Observe the result key for changes
+        navController.currentBackStackEntry?.savedStateHandle?.getLiveData<Bundle>("resultKey")?.observe(
+            viewLifecycleOwner
+        ) { result ->
+            val resultObject = result?.getParcelable<Course>("resultObjectKey")
+
+            if (resultObject != null) {
+                courses.add(resultObject)
+            }
         }
 
         val myAdapter = CourseAdapter(courses)
