@@ -1,23 +1,38 @@
 package com.example.recyclerviewdemo
 
-class CourseViewModel {
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+
+class CourseViewModel : ViewModel(){
     var course: Course? = null
     var hole : MutableList<Hole> = mutableListOf()
 
-    private var _distance = 0
-    val distance: Int
-        get() = _distance
-    private var _par = 0
-    val par : Int
-        get() = _par
+    private var _name = MutableLiveData("")
+    val name: LiveData<String>
+        get() = _name
 
-    fun updateCourse(holes: List<Hole>, numOfHoles: Int, totalPar: Int) {
-        course = Course("Some Place", holes, numOfHoles, totalPar)
+    fun updateCourse(name : String, location : String) {
+        course = Course(name, hole, hole.size, calculatePar(), location,calculateDistance())
     }
-    fun addHole() {
-        hole.add(Hole(par, distance))
+    fun addHole(a :Int, b :Int) {
+        hole.add(Hole(a, b))
     }
-    fun clearHoles(){
-
+    fun clearCourse(){
+        course = null
+    }
+    fun calculatePar() : Int{
+        var par = 0
+        for(each in hole) {
+            par += each.par
+        }
+        return par
+    }
+    fun calculateDistance() : Int{
+        var distance = 0
+        for(each in hole) {
+            distance += each.distance
+        }
+        return distance
     }
 }

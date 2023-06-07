@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/courseSelectorFragment">
+    app:startDestination="@id/mainFragment">
 
     <fragment
         android:id="@+id/courseSelectorFragment"
@@ -13,9 +13,34 @@
         <action
             android:id="@+id/action_courseSelectorFragment_to_courseCreatorFragment"
             app:destination="@id/courseCreatorFragment" />
+        <action
+            android:id="@+id/action_courseSelectorFragment_to_createRoundFragment"
+            app:destination="@id/createRoundFragment" />
     </fragment>
     <fragment
         android:id="@+id/courseCreatorFragment"
         android:name="com.example.recyclerviewdemo.CourseCreatorFragment"
-        android:label="CourseCreatorFragment" />
+        android:label="CourseCreatorFragment" >
+        <argument
+            android:name="numOfHoles"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/createRoundFragment"
+        android:name="com.example.recyclerviewdemo.CreateRoundFragment"
+        android:label="fragment_create_round"
+        tools:layout="@layout/fragment_create_round" >
+        <argument
+            android:name="Course"
+            app:argType="com.example.recyclerviewdemo.Course" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.recyclerviewdemo.MainFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_mainFragment_to_courseSelectorFragment"
+            app:destination="@id/courseSelectorFragment" />
+    </fragment>
 </navigation>

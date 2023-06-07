@@ -10,6 +10,7 @@ data class Hole(var par: Int, var distance: Int) : Parcelable {
               parcel.readInt()
        )
 
+
        override fun writeToParcel(parcel: Parcel, flags: Int) {
               parcel.writeInt(par)
               parcel.writeInt(distance)
@@ -28,4 +29,5 @@ data class Hole(var par: Int, var distance: Int) : Parcelable {
                      return arrayOfNulls(size)
               }
        }
+       constructor() : this(0, 0)
 }

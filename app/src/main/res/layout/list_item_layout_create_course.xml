@@ -13,9 +13,9 @@
         android:layout_height="1dp"
         android:background="#000000"
         android:textColor="@color/black"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="155dp"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
